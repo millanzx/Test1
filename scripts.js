@@ -152,11 +152,11 @@ const movies = [
 ];
 
 // Ограничиваем массив до 100 фильмов
-const movies = originalMovies.slice(0, 100);
+const moviesLimited = movies.slice(0, 100);
 
 // Функция для получения уникальных лет
 function getUniqueYears() {
-    const years = [...new Set(movies.map(movie => movie.year))];
+    const years = [...new Set(moviesLimited.map(movie => movie.year))];
     return years.sort((a, b) => b - a);
 }
 
@@ -208,9 +208,9 @@ function populateYearFilter() {
 // Функция для фильтрации фильмов по году
 function filterMoviesByYear(year) {
     if (year === 'all') {
-        return movies;
+        return moviesLimited;
     }
-    return movies.filter(movie => movie.year == year);
+    return moviesLimited.filter(movie => movie.year == year);
 }
 
 // Обработчик изменения фильтра по году
@@ -223,5 +223,5 @@ document.getElementById('year-filter').addEventListener('change', function() {
 // Инициализация страницы
 document.addEventListener('DOMContentLoaded', function() {
     populateYearFilter();
-    renderMovies(movies);
+    renderMovies(moviesLimited);
 });
