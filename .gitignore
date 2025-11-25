@@ -1,3 +1,4 @@
+```
 # Compiled and build artifacts
 *.pyc
 __pycache__/
@@ -28,14 +29,14 @@ venv/
 .vscode/
 .idea/
 
+# System files
+.DS_Store
+Thumbs.db
+
 # Coverage
 coverage/
 htmlcov/
 .coverage
-
-# OS generated files
-.DS_Store
-Thumbs.db
 
 # Build directories
 dist/
@@ -70,3 +71,4 @@ target/
 *.tar.bz2
 *.tar.xz
 *.tar.zst
+```

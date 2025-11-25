@@ -144,48 +144,38 @@ const movies = [
     { id: 105, title: "Движение вверх 3", year: 2024, rating: 7.6, poster: "https://i.ibb.co/0X5M7Jr/dvizhenie-vverh5-poster.jpg", description: "Продолжение спортивной саги о баскетболе." }
 ];
 
-// Ограничиваем массив до 100 фильмов
-const moviesLimited = movies.slice(0, 100);
-
-// Функция для получения уникальных лет
+// Функция для получения уникальных годов
 function getUniqueYears() {
-    const years = [...new Set(moviesLimited.map(movie => movie.year))];
-    return years.sort((a, b) => b - a);
+    return [...new Set(movies.map(movie => movie.year))].sort((a, b) => a - b);
 }
+
+// Ограниченный список фильмов для отображения
+const moviesLimited = movies;
 
 // Функция для отображения фильмов
 function renderMovies(moviesToRender) {
     const container = document.getElementById('movies-container');
-    
-    if (moviesToRender.length === 0) {
-        container.innerHTML = '<div class="no-movies">Фильмы не найдены</div>';
-        return;
-    }
-    
+    const grid = document.createElement('div');
+    grid.className = 'movies-grid';
+
     // Сортировка фильмов по убыванию рейтинга
     moviesToRender.sort((a, b) => b.rating - a.rating);
-    const grid = document.createElement('div');
-    grid.className = 'movie-grid';
-    
+
     moviesToRender.forEach(movie => {
         const card = document.createElement('div');
         card.className = 'movie-card';
-        
         card.innerHTML = `
-            <div class="movie-poster-container">
-                <img src="${movie.poster}" alt="${movie.title}" class="movie-poster" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x450/cccccc/666666?text=Нет+постера';" title="${movie.description}">
-                <div class="movie-tooltip">${movie.description}</div>
-            </div>
+            <img src="${movie.poster}" alt="${movie.title}" class="movie-poster">
             <div class="movie-info">
-                <div class="movie-title">${movie.title}</div>
+                <h3 class="movie-title">${movie.title}</h3>
                 <div class="movie-year">Год: ${movie.year}</div>
                 <div class="movie-rating">Рейтинг: ${movie.rating}/10</div>
             </div>
         `;
-        
+
         grid.appendChild(card);
     });
-    
+
     container.innerHTML = '';
     container.appendChild(grid);
 }
@@ -194,7 +184,7 @@ function renderMovies(moviesToRender) {
 function populateYearFilter() {
     const yearFilter = document.getElementById('year-filter');
     const years = getUniqueYears();
-    
+
     years.forEach(year => {
         const option = document.createElement('option');
         option.value = year;
@@ -203,7 +193,7 @@ function populateYearFilter() {
     });
 }
 
-// Функция для фильтрации фильмов по году и сортировки по рейтингу в порядке возрастания
+// Функция для фильтрации фильмов по году и сортировки по рейтингу в порядке убывания
 function filterMoviesByYear(year) {
     let filteredMovies;
     if (year === 'all') {
@@ -211,7 +201,7 @@ function filterMoviesByYear(year) {
     } else {
         filteredMovies = moviesLimited.filter(movie => movie.year == year);
     }
-    
+
     // Сортировка по рейтингу в порядке убывания
     return filteredMovies.sort((a, b) => b.rating - a.rating);
 }
