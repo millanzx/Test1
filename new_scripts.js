@@ -4,52 +4,52 @@
 
 const movies = [
     // 2004
-    { id: 1, title: "Брат 2", year: 2004, rating: 9.5, poster: "https://i.ibb.co/0j6hq3k/brother2-poster.jpg", description: "Продолжение культового фильма о Даниле Багрове, который приезжает в Чикаго и сталкивается с русской мафией." },
-    { id: 2, title: "Ночной дозор", year: 2004, rating: 8.2, poster: "https://i.ibb.co/0X5M7Jr/night-watch-poster.jpg", description: "Фантастический боевик о борьбе светлых и темных сил, где инквизитор Антон Городецкий пытается предотвратить надвигающуюся войну." },
-    { id: 3, title: "Духless", year: 2004, rating: 7.1, poster: "https://i.ibb.co/0X5M7Jr/dukhless-poster.jpg", description: "Драма о молодом человеке, который пытается вернуть утраченные чувства после аварии и находит любовь." },
-    { id: 4, title: "Остров", year: 2004, rating: 8.0, poster: "https://i.ibb.co/0X5M7Jr/ostrov-poster.jpg", description: "Фильм о старце-отшельнике на российском севере, который помогает людям найти духовное просветление." },
-    { id: 5, title: "Свой среди чужих, чужой среди своих", year: 2004, rating: 7.5, poster: "https://i.ibb.co/0X5M7Jr/svoi-poster.jpg", description: "История о человеке, который пытается найти свое место между двумя мирами - криминальным и законопослушным." },
+    { id: 1, title: "Брат 2", year: 2004, rating: 9.5, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/41581.jpg", description: "Продолжение культового фильма о Даниле Багрове, который приезжает в Чикаго и сталкивается с русской мафией." },
+    { id: 2, title: "Ночной дозор", year: 2004, rating: 8.2, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/407.jpg", description: "Фантастический боевик о борьбе светлых и темных сил, где инквизитор Антон Городецкий пытается предотвратить надвигающуюся войну." },
+    { id: 3, title: "Духless", year: 2004, rating: 7.1, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/77222.jpg", description: "Драма о молодом человеке, который пытается вернуть утраченные чувства после аварии и находит любовь." },
+    { id: 4, title: "Остров", year: 2004, rating: 8.0, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/42252.jpg", description: "Фильм о старце-отшельнике на российском севере, который помогает людям найти духовное просветление." },
+    { id: 5, title: "Свой среди чужих, чужой среди своих", year: 2004, rating: 7.5, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/77223.jpg", description: "История о человеке, который пытается найти свое место между двумя мирами - криминальным и законопослушным." },
     
     // 2005
-    { id: 6, title: "Дневной дозор", year: 2005, rating: 7.4, poster: "https://i.ibb.co/0X5M7Jr/day-watch-poster.jpg", description: "Продолжение фильма 'Ночной дозор'. Светлые и темные силы заключают перемирие, но вражда продолжается." },
-    { id: 7, title: "Бумер", year: 2005, rating: 7.0, poster: "https://i.ibb.co/0X5M7Jr/boomer-poster.jpg", description: "История о человеке, который просыпается после 12-летней комы и пытается адаптироваться к новой жизни." },
-    { id: 8, title: "Сестры", year: 2005, rating: 7.3, poster: "https://i.ibb.co/0X5M7Jr/sisters-poster.jpg", description: "Фильм о двух сестрах-офицерах МВД, которые расследуют серию преступлений." },
-    { id: 9, title: "Каменская", year: 2005, rating: 7.2, poster: "https://i.ibb.co/0X5M7Jr/kamenskaya-poster.jpg", description: "Детективная история о следователе Анне Каменской, расследующей сложное убийство." },
-    { id: 10, title: "9 рота", year: 2005, rating: 7.8, poster: "https://i.ibb.co/0X5M7Jr/9th-company-poster.jpg", description: "Военная драма о молодых солдатах, служащих в Афганистане в 1980-х годах." },
+    { id: 6, title: "Дневной дозор", year: 2005, rating: 7.4, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/408.jpg", description: "Продолжение фильма 'Ночной дозор'. Светлые и темные силы заключают перемирие, но вражда продолжается." },
+    { id: 7, title: "Бумер", year: 2005, rating: 7.0, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/43774.jpg", description: "История о человеке, который просыпается после 12-летней комы и пытается адаптироваться к новой жизни." },
+    { id: 8, title: "Сестры", year: 2005, rating: 7.3, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/77224.jpg", description: "Фильм о двух сестрах-офицерах МВД, которые расследуют серию преступлений." },
+    { id: 9, title: "Каменская", year: 2005, rating: 7.2, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/77225.jpg", description: "Детективная история о следователе Анне Каменской, расследующей сложное убийство." },
+    { id: 10, title: "9 рота", year: 2005, rating: 7.8, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/42253.jpg", description: "Военная драма о молодых солдатах, служащих в Афганистане в 1980-х годах." },
     
     // 2006
-    { id: 11, title: "Груз 200", year: 2006, rating: 8.1, poster: "https://i.ibb.co/0X5M7Jr/gruz200-poster.jpg", description: "Психологическая драма о событиях в Чечне, где солдаты возвращаются с войны с тяжелым грузом." },
-    { id: 12, title: "Братство", year: 2006, rating: 6.9, poster: "https://i.ibb.co/0X5M7Jr/bratstvo-poster.jpg", description: "Продолжение фильма 'Брат'. Данила Багров приезжает в Москву и сталкивается с новыми вызовами." },
-    { id: 13, title: "Ирония судьбы. Продолжение", year: 2006, rating: 7.6, poster: "https://i.ibb.co/0X5M7Jr/irony-poster.jpg", description: "Продолжение знаменитой комедии. Женя приезжает в Нью-Йорк и вновь сталкивается с иронией судьбы." },
-    { id: 14, title: "Кавказская пленница, или Новые приключения Шурика", year: 2006, rating: 6.8, poster: "https://i.ibb.co/0X5M7Jr/kavkaz-poster.jpg", description: "Комедийное продолжение приключений Шурика, который снова попадает в кавказские приключения." },
-    { id: 15, title: "Стиляги", year: 2006, rating: 7.4, poster: "https://i.ibb.co/0X5M7Jr/stilyagi-poster.jpg", description: "Музыкальная драма о молодежной субкультуре 1950-х годов, которая любила джаз и западную культуру." },
+    { id: 11, title: "Груз 200", year: 2006, rating: 8.1, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/42254.jpg", description: "Психологическая драма о событиях в Чечне, где солдаты возвращаются с войны с тяжелым грузом." },
+    { id: 12, title: "Братство", year: 2006, rating: 6.9, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/77226.jpg", description: "Продолжение фильма 'Брат'. Данила Багров приезжает в Москву и сталкивается с новыми вызовами." },
+    { id: 13, title: "Ирония судьбы. Продолжение", year: 2006, rating: 7.6, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/43775.jpg", description: "Продолжение знаменитой комедии. Женя приезжает в Нью-Йорк и вновь сталкивается с иронией судьбы." },
+    { id: 14, title: "Кавказская пленница, или Новые приключения Шурика", year: 2006, rating: 6.8, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/43776.jpg", description: "Комедийное продолжение приключений Шурика, который снова попадает в кавказские приключения." },
+    { id: 15, title: "Стиляги", year: 2006, rating: 7.4, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/43777.jpg", description: "Музыкальная драма о молодежной субкультуре 1950-х годов, которая любила джаз и западную культуру." },
     
     // 2007
-    { id: 16, title: "Волкодав из рода Серых Волков", year: 2007, rating: 7.0, poster: "https://i.ibb.co/0X5M7Jr/volkodav-poster.jpg", description: "Фэнтези о наемнике Волкодаве, который защищает древнее заклятие от темных сил." },
-    { id: 17, title: "Самый лучший фильм", year: 2007, rating: 7.5, poster: "https://i.ibb.co/0X5M7Jr/luchshij-poster.jpg", description: "Комедия о семье, которая пытается снять самый лучший фильм в истории." },
-    { id: 18, title: "Контакт", year: 2007, rating: 7.1, poster: "https://i.ibb.co/0X5M7Jr/kontakt-poster.jpg", description: "Фантастическая драма о контакте с инопланетной цивилизацией." },
-    { id: 19, title: "Москва слезам не верит", year: 2007, rating: 7.3, poster: "https://i.ibb.co/0X5M7Jr/moskva-poster.jpg", description: "Ремейк знаменитого фильма о трех женщинах, приехавших в Москву искать счастья." },
-    { id: 20, title: "Текст", year: 2007, rating: 7.2, poster: "https://i.ibb.co/0X5M7Jr/text-poster.jpg", description: "Драма о писателе, который теряет способность говорить и пишет тексты, меняющие реальность." },
+    { id: 16, title: "Волкодав из рода Серых Волков", year: 2007, rating: 7.0, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/43778.jpg", description: "Фэнтези о наемнике Волкодаве, который защищает древнее заклятие от темных сил." },
+    { id: 17, title: "Самый лучший фильм", year: 2007, rating: 7.5, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/43779.jpg", description: "Комедия о семье, которая пытается снять самый лучший фильм в истории." },
+    { id: 18, title: "Контакт", year: 2007, rating: 7.1, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/43780.jpg", description: "Фантастическая драма о контакте с инопланетной цивилизацией." },
+    { id: 19, title: "Москва слезам не верит", year: 2007, rating: 7.3, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/43781.jpg", description: "Ремейк знаменитого фильма о трех женщинах, приехавших в Москву искать счастья." },
+    { id: 20, title: "Текст", year: 2007, rating: 7.2, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/77227.jpg", description: "Драма о писателе, который теряет способность говорить и пишет тексты, меняющие реальность." },
     
     // 2008
-    { id: 22, title: "Волкодав. Сага о Найме", year: 2008, rating: 6.8, poster: "https://i.ibb.co/0X5M7Jr/volkodav2-poster.jpg", description: "Продолжение приключений Волкодава, на этот раз связанное с таинственным пророчеством." },
-    { id: 23, title: "День выборов", year: 2008, rating: 6.7, poster: "https://i.ibb.co/0X5M7Jr/de-poster.jpg", description: "Комедия о выборах мэра в небольшом российском городе." },
-    { id: 24, title: "Стиляги", year: 2008, rating: 7.4, poster: "https://i.ibb.co/0X5M7Jr/stilyagi2008-poster.jpg", description: "Возвращение к теме стиляг в советском обществе с новыми персонажами." },
-    { id: 25, title: "Контакт", year: 2008, rating: 7.1, poster: "https://i.ibb.co/0X5M7Jr/kontakt2008-poster.jpg", description: "Еще одна история контакта с инопланетной цивилизацией." },
+    { id: 22, title: "Волкодав. Сага о Найме", year: 2008, rating: 6.8, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/43782.jpg", description: "Продолжение приключений Волкодава, на этот раз связанное с таинственным пророчеством." },
+    { id: 23, title: "День выборов", year: 2008, rating: 6.7, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/43783.jpg", description: "Комедия о выборах мэра в небольшом российском городе." },
+    { id: 24, title: "Стиляги", year: 2008, rating: 7.4, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/43784.jpg", description: "Возвращение к теме стиляг в советском обществе с новыми персонажами." },
+    { id: 25, title: "Контакт", year: 2008, rating: 7.1, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/43785.jpg", description: "Еще одна история контакта с инопланетной цивилизацией." },
     
     // 2009
-    { id: 26, title: "Служебный роман. Наше время", year: 2009, rating: 6.6, poster: "https://i.ibb.co/0X5M7Jr/sluzhebnyy-poster.jpg", description: "Ремейк знаменитой комедии о романе на рабочем месте." },
-    { id: 27, title: "Остров", year: 2009, rating: 8.0, poster: "https://i.ibb.co/0X5M7Jr/ostrov2009-poster.jpg", description: "Продолжение истории о старце-отшельнике, но с новыми персонажами и конфликтами." },
-    { id: 28, title: "День радио", year: 2009, rating: 7.7, poster: "https://i.ibb.co/0X5M7Jr/denradio-poster.jpg", description: "Комедия о сотрудниках радиостанции в день их юбилея." },
-    { id: 29, title: "Жмурки", year: 2009, rating: 7.3, poster: "https://i.ibb.co/0X5M7Jr/zhmurki-poster.jpg", description: "Криминальная комедия о мошенниках, которые прикидываются мертвыми." },
-    { id: 30, title: "Белая гвардия", year: 2009, rating: 7.0, poster: "https://i.ibb.co/0X5M7Jr/belaya-poster.jpg", description: "Драма по роману Михаила Булгакова о судьбе семьи Турбиных во времена Гражданской войны." },
+    { id: 26, title: "Служебный роман. Наше время", year: 2009, rating: 6.6, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/43786.jpg", description: "Ремейк знаменитой комедии о романе на рабочем месте." },
+    { id: 27, title: "Остров", year: 2009, rating: 8.0, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/43787.jpg", description: "Продолжение истории о старце-отшельнике, но с новыми персонажами и конфликтами." },
+    { id: 28, title: "День радио", year: 2009, rating: 7.7, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/43788.jpg", description: "Комедия о сотрудниках радиостанции в день их юбилея." },
+    { id: 29, title: "Жмурки", year: 2009, rating: 7.3, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/43789.jpg", description: "Криминальная комедия о мошенниках, которые прикидываются мертвыми." },
+    { id: 30, title: "Белая гвардия", year: 2009, rating: 7.0, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/43790.jpg", description: "Драма по роману Михаила Булгакова о судьбе семьи Турбиных во времена Гражданской войны." },
     
     // 2010
-    { id: 31, title: "Елки", year: 2010, rating: 7.2, poster: "https://i.ibb.co/0X5M7Jr/yolki-poster.jpg", description: "Новогодняя комедия, объединяющая несколько историй разных людей в канун Нового года." },
-    { id: 32, title: "Географ глобус пропил", year: 2010, rating: 8.3, poster: "https://i.ibb.co/0X5M7Jr/geograf-poster.jpg", description: "Драма о школьном учителе, который теряет работу и смысл жизни." },
-    { id: 33, title: "Сирота казанская", year: 2010, rating: 7.1, poster: "https://i.ibb.co/0X5M7Jr/sirota-poster.jpg", description: "История о девушке, которая возвращается в родной город и сталкивается с прошлым." },
-    { id: 34, title: "Белый тигр", year: 2010, rating: 7.4, poster: "https://i.ibb.co/0X5M7Jr/belyi-tigr-poster.jpg", description: "Военная драма о танкисте, который ведет борьбу с загадочным немецким танком." },
-    { id: 35, title: "О чём говорят мужчины", year: 2010, rating: 7.0, poster: "https://i.ibb.co/0X5M7Jr/ohem-poster.jpg", description: "Комедия о мужчинах, которые обсуждают жизнь, любовь и отношения." },
+    { id: 31, title: "Елки", year: 2010, rating: 7.2, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/43791.jpg", description: "Новогодняя комедия, объединяющая несколько историй разных людей в канун Нового года." },
+    { id: 32, title: "Географ глобус пропил", year: 2010, rating: 8.3, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/43792.jpg", description: "Драма о школьном учителе, который теряет работу и смысл жизни." },
+    { id: 33, title: "Сирота казанская", year: 2010, rating: 7.1, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/43793.jpg", description: "История о девушке, которая возвращается в родной город и сталкивается с прошлым." },
+    { id: 34, title: "Белый тигр", year: 2010, rating: 7.4, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/43794.jpg", description: "Военная драма о танкисте, который ведет борьбу с загадочным немецким танком." },
+    { id: 35, title: "О чём говорят мужчины", year: 2010, rating: 7.0, poster: "https://st.kp.yandex.net/images/film_iphone/iphone360/43795.jpg", description: "Комедия о мужчинах, которые обсуждают жизнь, любовь и отношения." },
     
     // 2011
     { id: 36, title: "Елки 2", year: 2011, rating: 6.8, poster: "https://i.ibb.co/0X5M7Jr/yolki2-poster.jpg", description: "Продолжение новогодней комедии с новыми историями и персонажами." },
