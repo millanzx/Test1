@@ -604,60 +604,49 @@
             `;
 
             try {
-                // Загружаем данные из JSON файла, созданного из Excel
-                const response = await fetch('parsed_data.json');
+                // Пробуем загрузить CSV
+                const response = await fetch(SHEET_CSV_URL);
                 if (!response.ok) throw new Error('Network response was not ok');
-                const excelData = await response.json();
+                const csvText = await response.text();
                 
-                // Маппинг данных из Excel в структуру приложения
-                programs = excelData.map((row, index) => {
-                    // Преобразуем уровень образования
-                    const level = row['education_level'] === 'СПО' ? 'SPO' : 'VO';
-                    const level_readable = row['education_level'] === 'СПО' ? 'Колледж' : 'ВУЗ';
-                    
-                    // Обрабатываем теги бюджетных мест
-                    const tags = [];
-                    if (row['budget_seats'] && row['budget_seats'].toLowerCase().includes('бюджет')) {
-                        tags.push('Бюджет');
-                    } else if (row['budget_seats'] && row['budget_seats'].toLowerCase().includes('мест')) {
-                        tags.push('Места');
-                    }
-                    
-                    // Добавляем теги по макрогруппе
-                    if (row['macrogroup_name']) {
-                        tags.push(row['macrogroup_name']);
-                    }
-                    
+                // Парсим CSV
+                const results = Papa.parse(csvText, { header: true, skipEmptyLines: true });
+                
+                // Маппинг данных из таблицы в структуру приложения
+                // Предполагаем, что в таблице есть определенные заголовки, но делаем фоллбек
+                programs = results.data.map((row, index) => {
+                    // Попытка умного маппинга (адаптируйте ключи под реальные заголовки таблицы)
+                    // Если в таблице заголовки на русском, используем их
                     return {
-                        id: parseInt(row['id']),
-                        title: row['program_name'] || "Без названия",
-                        fgos_code: row['fgos_code'] || "—",
-                        fgos_name: row['program_name'] || "",
-                        institution: row['institution_name'] || "Не указан",
-                        district: row['region'] || "РФ",
-                        level: level,
-                        level_readable: level_readable,
-                        base: "11 классов", // по умолчанию
-                        duration: "4 года", // по умолчанию
-                        category: row['macrogroup_name'] || "Общее",
-                        tags: tags.length > 0 ? tags : ["Общее"],
-                        places: 0, // по умолчанию
-                        salary: "по итогам", // по умолчанию
-                        desc: `Программа в области ${row['macrogroup_name'] || 'образования'}. ${row['institution_name'] || ''}.`,
+                        id: index + 100, // offset ID
+                        title: row['Program_Name'] || row['Название'] || row['title'] || "Без названия",
+                        fgos_code: row['FGOS_Code'] || row['Код'] || "—",
+                        fgos_name: row['FGOS_Name'] || row['Специальность'] || "",
+                        institution: row['Institution_Name'] || row['ВУЗ'] || "Не указан",
+                        district: row['District'] || row['ФО'] || "РФ",
+                        level: (row['Level'] || row['Уровень'] || "").includes('СПО') ? 'SPO' : 'VO',
+                        level_readable: (row['Level'] || row['Уровень'] || "").includes('СПО') ? 'Колледж' : 'Бакалавриат',
+                        base: row['Base'] || row['База'] || "11 классов",
+                        duration: row['Duration'] || row['Срок'] || "4 года",
+                        category: row['Category'] || row['Категория'] || "Общее",
+                        tags: (row['Tags'] || row['Теги'] || "Бюджет").split(',').map(t => t.trim()),
+                        places: parseInt(row['Places'] || row['Места'] || 0),
+                        salary: row['Salary'] || row['Зарплата'] || "по итогам",
+                        desc: row['Description'] || row['Описание'] || "Описание программы загружается...",
                         // Генерируем цвет на основе категории (просто для визуала)
                         color: ['blue', 'green', 'orange', 'purple', 'indigo'][index % 5],
-                        quiz_cat: row['macrogroup_name'] || "Tech" // Категория для квиза
+                        quiz_cat: "Tech" // Default fallback
                     };
                 });
 
-                console.log("Loaded programs from Excel JSON:", programs.length);
+                console.log("Loaded programs from Sheet:", programs.length);
                 
                 if (programs.length === 0) throw new Error("Empty sheet data");
 
-                showDataSource("Данные из Excel файла (pars.xlsx)");
+                showDataSource("");
 
             } catch (error) {
-                console.warn("Failed to load Excel JSON data, using fallback.", error);
+                console.warn("Failed to load Google Sheet data, using fallback.", error);
                 programs = fallbackPrograms;
                 showDataSource("Резервная база данных (Демо)");
             } finally {
