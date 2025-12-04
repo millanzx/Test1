@@ -296,6 +296,28 @@
         </div>
     </main>
     
+    <!-- Google Sheets Section -->
+    <section class="w-full bg-slate-50 py-12 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-rgsu-900">Дополнительные данные</h2>
+                <button id="toggleSheetBtn" class="bg-rgsu-600 hover:bg-rgsu-700 text-white px-4 py-2 rounded-lg transition-colors">
+                    Показать таблицу
+                </button>
+            </div>
+            <div id="googleSheetContainer" class="hidden bg-white rounded-xl shadow-soft border border-slate-200 overflow-hidden">
+                <iframe 
+                    src="https://docs.google.com/spreadsheets/d/1Gb44i4DP8E0mNA2rTctmCuMjNyjQYmYZ/pub?output=html" 
+                    width="100%" 
+                    height="600" 
+                    frameborder="0" 
+                    allowfullscreen
+                    class="w-full">
+                </iframe>
+            </div>
+        </div>
+    </section>
+    
     <!-- Footer -->
     <footer class="bg-slate-900 text-slate-300 py-16 border-t border-slate-800 mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-12">
@@ -604,49 +626,60 @@
             `;
 
             try {
-                // Пробуем загрузить CSV
-                const response = await fetch(SHEET_CSV_URL);
+                // Загружаем данные из JSON файла, созданного из Excel
+                const response = await fetch('parsed_data.json');
                 if (!response.ok) throw new Error('Network response was not ok');
-                const csvText = await response.text();
+                const excelData = await response.json();
                 
-                // Парсим CSV
-                const results = Papa.parse(csvText, { header: true, skipEmptyLines: true });
-                
-                // Маппинг данных из таблицы в структуру приложения
-                // Предполагаем, что в таблице есть определенные заголовки, но делаем фоллбек
-                programs = results.data.map((row, index) => {
-                    // Попытка умного маппинга (адаптируйте ключи под реальные заголовки таблицы)
-                    // Если в таблице заголовки на русском, используем их
+                // Маппинг данных из Excel в структуру приложения
+                programs = excelData.map((row, index) => {
+                    // Преобразуем уровень образования
+                    const level = row['education_level'] === 'СПО' ? 'SPO' : 'VO';
+                    const level_readable = row['education_level'] === 'СПО' ? 'Колледж' : 'ВУЗ';
+                    
+                    // Обрабатываем теги бюджетных мест
+                    const tags = [];
+                    if (row['budget_seats'] && row['budget_seats'].toLowerCase().includes('бюджет')) {
+                        tags.push('Бюджет');
+                    } else if (row['budget_seats'] && row['budget_seats'].toLowerCase().includes('мест')) {
+                        tags.push('Места');
+                    }
+                    
+                    // Добавляем теги по макрогруппе
+                    if (row['macrogroup_name']) {
+                        tags.push(row['macrogroup_name']);
+                    }
+                    
                     return {
-                        id: index + 100, // offset ID
-                        title: row['Program_Name'] || row['Название'] || row['title'] || "Без названия",
-                        fgos_code: row['FGOS_Code'] || row['Код'] || "—",
-                        fgos_name: row['FGOS_Name'] || row['Специальность'] || "",
-                        institution: row['Institution_Name'] || row['ВУЗ'] || "Не указан",
-                        district: row['District'] || row['ФО'] || "РФ",
-                        level: (row['Level'] || row['Уровень'] || "").includes('СПО') ? 'SPO' : 'VO',
-                        level_readable: (row['Level'] || row['Уровень'] || "").includes('СПО') ? 'Колледж' : 'Бакалавриат',
-                        base: row['Base'] || row['База'] || "11 классов",
-                        duration: row['Duration'] || row['Срок'] || "4 года",
-                        category: row['Category'] || row['Категория'] || "Общее",
-                        tags: (row['Tags'] || row['Теги'] || "Бюджет").split(',').map(t => t.trim()),
-                        places: parseInt(row['Places'] || row['Места'] || 0),
-                        salary: row['Salary'] || row['Зарплата'] || "по итогам",
-                        desc: row['Description'] || row['Описание'] || "Описание программы загружается...",
+                        id: parseInt(row['id']),
+                        title: row['program_name'] || "Без названия",
+                        fgos_code: row['fgos_code'] || "—",
+                        fgos_name: row['program_name'] || "",
+                        institution: row['institution_name'] || "Не указан",
+                        district: row['region'] || "РФ",
+                        level: level,
+                        level_readable: level_readable,
+                        base: "11 классов", // по умолчанию
+                        duration: "4 года", // по умолчанию
+                        category: row['macrogroup_name'] || "Общее",
+                        tags: tags.length > 0 ? tags : ["Общее"],
+                        places: 0, // по умолчанию
+                        salary: "по итогам", // по умолчанию
+                        desc: `Программа в области ${row['macrogroup_name'] || 'образования'}. ${row['institution_name'] || ''}.`,
                         // Генерируем цвет на основе категории (просто для визуала)
                         color: ['blue', 'green', 'orange', 'purple', 'indigo'][index % 5],
-                        quiz_cat: "Tech" // Default fallback
+                        quiz_cat: row['macrogroup_name'] || "Tech" // Категория для квиза
                     };
                 });
 
-                console.log("Loaded programs from Sheet:", programs.length);
+                console.log("Loaded programs from Excel JSON:", programs.length);
                 
                 if (programs.length === 0) throw new Error("Empty sheet data");
 
-                showDataSource("");
+                showDataSource("Данные из Excel файла (pars.xlsx)");
 
             } catch (error) {
-                console.warn("Failed to load Google Sheet data, using fallback.", error);
+                console.warn("Failed to load Excel JSON data, using fallback.", error);
                 programs = fallbackPrograms;
                 showDataSource("Резервная база данных (Демо)");
             } finally {
@@ -1136,6 +1169,20 @@
             if (event.key === "Escape") {
                 closeModal();
                 closeQuiz();
+            }
+        });
+        
+        // Обработчик для переключения видимости Google-таблицы
+        document.getElementById('toggleSheetBtn').addEventListener('click', function() {
+            const container = document.getElementById('googleSheetContainer');
+            const button = document.getElementById('toggleSheetBtn');
+            
+            if (container.classList.contains('hidden')) {
+                container.classList.remove('hidden');
+                button.textContent = 'Скрыть таблицу';
+            } else {
+                container.classList.add('hidden');
+                button.textContent = 'Показать таблицу';
             }
         });
     </script>
